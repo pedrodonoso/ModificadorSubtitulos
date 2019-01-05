@@ -1,23 +1,8 @@
-import re,time
-
-def modifica(inicio,final,segundos):
-    segundo,milisegundo = inicio.strip().split(",")
-    h,m,s = segundo.split(":")
-    newsegundo = int(s) + segundos
-    lista = []
-    lista.append(h)
-    lista.append(m)
-    lista.append(str(newsegundo))
-    newinicio = ":".join(lista) + "," + milisegundo
-    
-    segundo, milisegundo = final.strip().split(",")
-    h, m, s = segundo.split(":")
-    newsegundo = int(s) + segundos
-    lista = []
-    lista.append(h)
-    lista.append(m)
-    lista.append(str(newsegundo))
-    newfinal = ":".join(lista) + "," + milisegundo
+import re,myTime
+def modifica(inicio,final,h,m,s):
+    newinicio = myTime.hacerTodo(inicio,h,m,s)
+    newfinal = myTime.hacerTodo(final,h,m,s)
+    print(newinicio, newfinal)
     return newinicio, newfinal
 
 
@@ -31,7 +16,7 @@ while c < 6:
     if i.__len__() > 2:
         inicio = i[0]
         final = i[2]
-        ni,nf = modifica(inicio,final,2)
+        ni,nf = modifica(inicio,final,0,0,2)
         nueva = ni + " --> " + nf + "\n"
         lista.append(nueva)
     else:
@@ -39,5 +24,7 @@ while c < 6:
     print(i)
     c = c + 1
 
-print(lista)
 file.close()
+
+for i in lista:
+    print(i)
