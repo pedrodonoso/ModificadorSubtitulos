@@ -1,9 +1,9 @@
 import datetime
 
-def transformarNumero(numero):
+def transformarNumero(numero,cant): #cant = 3 => 001 ,cant = 2 => 01
     largo= str(numero).__len__()
     nuevo = str(numero)
-    while largo < 3:
+    while largo < cant:
         nuevo = "0" + nuevo
         largo = nuevo.__len__()
     return(nuevo)
@@ -29,8 +29,9 @@ def hacerTodo(hora,h,m,s,ms = 0): #hora = H:M:S,MS
     second,msecond = mSecondtoSecond(int(ms))
     dateTiempo = horaString(tiempo)
     newTiempo = cambiarHora(dateTiempo, h, m, s + second)
-
-    return newTiempo.__str__() + "," + transformarNumero(msecond)
+    h,m,s = newTiempo.__str__().split(":")
+    nuevoTiempo = transformarNumero(h,2) + ":" + m + ":" + s 
+    return nuevoTiempo + "," + transformarNumero(msecond,3)
 
 
 #b = datetime.timedelta(hours=2, minutes=4, seconds=45)
